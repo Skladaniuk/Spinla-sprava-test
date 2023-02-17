@@ -4,7 +4,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 
 export const increment = createAction('myValue/increment');
 export const decrement = createAction('myValue/decrement');
-console.log(increment())
+
 
 const myReducer = createReducer(10, {
   [increment]: (state, action) => state + action.payload,
