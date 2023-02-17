@@ -1,32 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import * as ReactBootStrap from 'react-bootstrap';
 import { ModalWindow } from './ModalWindow';
+import { useSelector, useDispatch } from 'react-redux';
+import * as listOperation from '../redux/list/listOperation'
 
 export const Table = () => {
 
-const [list, setList] = useState([]);
+
 const [selectedFields, setSelectedFields] = useState({name:true,
     username:true,number:true, company:true, email:false, website:false, adress:false, id:false});
 
-
-
+    const dispatch = useDispatch()
+    const list = useSelector(state => state.list.entities)
 
 useEffect(() => {
-    const fetchData = async () => {
-        const {data} = await axios('https://api.json-generator.com/templates/sqo7JH4It1IT/data?access_token=66g66vr0pjjihitvcdwdyfuetiq1joe8kmt68vkq')
-    setList(data)
-        
-    }
-    fetchData()
-    
-}, [setList])
+   dispatch(listOperation.fetchList())
+    }, [dispatch])
 
-console.log(list)
+
 
 
   return (
     <div>
+    
        <ReactBootStrap.Table striped bordered hover>
       <thead>
         <tr>

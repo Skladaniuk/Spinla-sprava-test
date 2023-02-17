@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import {nanoid} from 'nanoid'
+import {nanoid} from 'nanoid';
+import { Filter } from './Filter';
 
 
 
@@ -46,7 +47,7 @@ export const ModalWindow = ({fields}) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Filter/>
         </Modal.Header>
         <Modal.Body>
           
