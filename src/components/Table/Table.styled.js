@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const MainTable = styled.table`
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
     margin-top: 12px;
+    margin-left: 24px;
+    margin-right: 25px;
     border-collapse: collapse;
 `
 
@@ -27,6 +29,8 @@ export const Button = styled.button`
     border: none;
     border-radius: 6px;
     padding: 12px 48px;
+    margin-left: 24px;
+    margin-top: 24px;
     background-color: #BE5AF0;
     color: #fff;
     cursor: pointer;

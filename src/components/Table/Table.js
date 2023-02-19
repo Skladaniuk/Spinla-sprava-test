@@ -61,12 +61,12 @@ export const Table = () => {
   }
 
   return (
-    <Box padding="24px" backgroundColor = "#202126" width="100vw" height="100vh">
+    <Box  backgroundColor = "#202126" width="100vw" height="100vh">
       <Button onClick={toggleModal}>
         Select Columns!
       </Button>
       <Box overflow="auto">
-        <MainTable >
+        <MainTable>
         <thead>
           <tr>
             {selectedFields.name && <TableHead>Name</TableHead>}
