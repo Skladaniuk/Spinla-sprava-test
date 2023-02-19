@@ -1,4 +1,6 @@
 import React from 'react';
+
+import CONST from 'const';
 import { Input } from './Filter.styled';
 
 export const Filter = ({ setSearchText }) => {
@@ -10,7 +12,7 @@ export const Filter = ({ setSearchText }) => {
             setSearchText(e.target.value);
           }}
           type="text"
-          placeholder="Search available columns..."
+          placeholder={CONST.inputPlaceholder}
         />
       </label>
     </div>

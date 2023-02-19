@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchList } from './listOperation';
-import CONST from 'const';
 
-const listSlice = createSlice({
-  name: 'list',
+import CONST from 'const';
+import { fetchUserList } from './fetchUserList';
+
+const userListSlice = createSlice({
+  name: 'userlist',
   initialState: {
     entities: [],
     isLoading: false,
@@ -12,7 +13,6 @@ const listSlice = createSlice({
   },
   reducers: {
     selectField: (state, action) => {
-      console.log(action.payload, ' --- PAYLOAaaaD');
       const { fieldName, value } = action.payload;
       if (typeof fieldName === 'string' && typeof value === 'boolean') {
         state.activeFields = { ...state.activeFields, [fieldName]: value };
@@ -20,15 +20,16 @@ const listSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchList.fulfilled]: (state, action) => {
+    [fetchUserList.fulfilled]: (state, action) => {
       return { ...state, entities: action.payload, isLoading: false };
     },
-    [fetchList.pending]: state => {
+    [fetchUserList.pending]: state => {
       return { ...state, isLoading: true };
     },
   },
 });
 
-const { actions, reducer } = listSlice;
+const { actions, reducer } = userListSlice;
+
 export const { selectField } = actions;
 export default reducer;

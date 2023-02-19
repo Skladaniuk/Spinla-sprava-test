@@ -1,54 +1,27 @@
 # SPILNA-SPRAVA-TEST
 
-Цей проект було створено за допомогою
-[Create React App](https://github.com/facebook/create-react-app). Для знайомства
-і налатшування додаткових можливостей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+This project was created with
+[Create React App](https://github.com/facebook/create-react-app). To get
+acquainted and configure additional features
+[refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## Клонування репозиторію
+## Cloning repo
 
-1. Для клонування репозиторію в командному рядку напишіть команду `git clone https://github.com/Skladaniuk/Spinla-sprava-test`.  
-2. В GitHub в репозиторії[https://github.com/Skladaniuk/Spinla-sprava-test] виберіть `Code` -> `Open with GithubDesktop` і склонуйте
-репозиторій та выдкрийте за допомогою GitHub Desktop.
-2. Скачайте Dowloand Zip, розархівуйте та відкрийте папку за допомогою
-редактору.
+For starting working with the project we need to clone the repo. This could be
+achieved with command `git clone *repo url*` in our case it would be
+`git clone https://github.com/Skladaniuk/Spinla-sprava-test`
 
-## Підготовка до роботи
+## Start app
 
-1. Переконайтеся, що на комп'ютері встановлено LTS-версію Node.js.
-   [Скачай та установи](https://nodejs.org/en/) якщо потрібно.
-2. Встановити залежності проекту командою `yarn install`.
-3. Запусти режим розробки, виконав команду `yarn start`.
-4. Перейди у браузері за адресою [http://localhost:3000](http://localhost:3000).
-   Ця сторінка буде автоматично перезавантажуватись після збереження змін у
-   файлі проекту.
+1. Make sure you have an LTS version of Node.js installed on your computer.
+   [Download and install](https://nodejs.org/en/) if needed.
+2. Install the project's base dependencies with the `yarn install` command.
+3. Start development mode by running the `yarn start` command.
+4. Go to [http://localhost:3000](http://localhost:3000) in your browser. This
+   page will automatically reload after saving changes to the project files.
 
-## Деплой
 
-Продакшн версія проєкта буде автоматически проходити лінтинг, збиратись і
-деплоїтись на GitHub Pages, в гілку `gh-pages`, кожен раз коли оновлюється гілка
-`main`.
 
-Далі необхідно зайти в настройки GitHub-репозитлрія (`Settings` > `Pages`) і
-виставити роздачу продакшн версії файлів з папки `/root` гілки `gh-pages. !
 
-### Статус деплоя
 
-Статус деплою останнього комміту відображається іконкою біля його
-ідентифікатора.
 
-- **Жовтий колір** - виконується складання та деплой проекту.
-- **Зелений колір** -деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, складання чи деплою сталася помилка.
-
-### Жива сторінка
-
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися за
-адресою вказаною у властивості `homepage`. Наприклад, ось посилання на живу
-версію для цього репозиторію
-[https://github.com/Skladaniuk/Spinla-sprava-test](https://github.com/Skladaniuk/Spinla-sprava-test).
-
-Якщо відкриється порожня сторінка, переконайтеся, що у вкладці `Console` немає
-помилок пов'язаних з неправильними шляхами до CSS та JS файлів проекту
-(**404**). Швидше всього в тебе неправильне значення властивості `homepage` у
-файлі `package.json`.
