@@ -4,12 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as listOperation from '../../redux/list/listOperation';
 import { Button, MainTable, TableHead, TableBody } from './Table.styled';
 import { Box } from '../Box';
-
-
-
+import { ColorRing } from  'react-loader-spinner'
 
 
 export const Table = () => {
+
+
+
+
+
   const dispatch = useDispatch();
 
   const listState = useSelector(state => state.list);
@@ -17,19 +20,34 @@ export const Table = () => {
   const selectedFields = useSelector(state => state.list.activeFields);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+ 
+
+
   useEffect(() => {
     dispatch(listOperation.fetchList());
   }, [dispatch]);
+
+
 
   const toggleModal = () => {
     setIsModalVisible(prev => !prev);
   };
 
+
+
   if (listState.isLoading) {
     return (
       <div>
-        <p>LOADING</p>
+        <ColorRing
+    
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
       </div>
     );
   }
@@ -43,11 +61,12 @@ export const Table = () => {
   }
 
   return (
-    <Box padding="24px" backgroundColor = "#202126" width='100vw' height='100vh'>
+    <Box padding="24px" backgroundColor = "#202126" width="100vw" height="100vh">
       <Button onClick={toggleModal}>
         Select Columns!
       </Button>
-      <MainTable>
+      <Box overflow="auto">
+        <MainTable >
         <thead>
           <tr>
             {selectedFields.name && <TableHead>Name</TableHead>}
@@ -70,12 +89,13 @@ export const Table = () => {
                 {selectedFields.company && <TableBody>{item.company}</TableBody>}
                 {selectedFields.email && <TableBody>{item.email}</TableBody>}
                 {selectedFields.website && <TableBody>{item.website}</TableBody>}
-                {selectedFields.adress && <TableBody>{item.adress}</TableBody>}
+                {selectedFields.adress && <TableBody>{item.address}</TableBody>}
                 {selectedFields.id && <TableBody>{item.id}</TableBody>}
               </tr>
             ))}
         </tbody>
       </MainTable>
+        </Box>
       <ModalWindow
         fields={selectedFields}
         isModalVisible={isModalVisible}

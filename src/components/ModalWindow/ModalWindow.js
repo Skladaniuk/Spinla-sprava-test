@@ -5,20 +5,21 @@ import { Button, Modal, ListContainer, Container, Title, List, Item, ListButton,
 import { Filter } from '../Filter/Filter';
 import { selectField as selectFieldInStore } from '../../redux/list/listReducer';
 
-export const ModalWindow = ({ isModalVisible, toggleModal }) => {
+
+
+
+
+
+export const ModalWindow = ({ fields, isModalVisible, toggleModal }) => {
   
-
-
-
-
+  
+  
+  
+  
   const dispatch = useDispatch();
-
-
   const [searchText, setSearchText] = useState('');
   const [activeFields, setActiveFields] = useState([]);
   const [inactiveFields, setInactiveFields] = useState([]);
-
-
   const selectedFields = useSelector(state => state.list.activeFields);
 
   
@@ -38,23 +39,47 @@ export const ModalWindow = ({ isModalVisible, toggleModal }) => {
 
     setActiveFields(active);
     setInactiveFields(inactive);
-    
+   
   }, [selectedFields]);
 
 
-
- 
+  
 
   const buildChangeFieldValueFunc = value => {
     return fieldName => dispatch(selectFieldInStore({ fieldName, value }));
   };
 
- 
+  let dragged = null;
+
+  const handleDragStart = e => {
+    e.dataTransfer.setData("text/plain", "text");
+    e.dataTransfer.dropEffect = "move";
+    dragged = e.currentTarget;
+    e.stopPropagation();
+  }
+
+
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const field = dragged.innerHTML;
+    dragged.draggable = false;
+     selectField(field);
+    setActiveFields(arr => [...arr, field]);
+    e.stopPropagation();
+    
+  }
+
+
+  const handleDragOver = (e) => {
+    console.log("Over");
+    e.stopPropagation();
+    e.preventDefault();
+  }
 
   const unselectField = buildChangeFieldValueFunc(false);
   const selectField = buildChangeFieldValueFunc(true);
 
-  console.log(selectField, unselectField);
 
   const filterActiveFieldByText = (array, text) => {
     if (
@@ -81,17 +106,20 @@ export const ModalWindow = ({ isModalVisible, toggleModal }) => {
               <Title>Available Columns</Title>
               <List>
                 {filterActiveFieldByText(inactiveFields, searchText).map(field => (
-                  <ItemContainer>
-                    <Item key={field}>{field}</Item>
+                  <ItemContainer  key={field}>
+                    <Item draggable
+                      onDragStart={handleDragStart}
+                       key={field}>{field}
+                   </Item>
                   </ItemContainer>
                 ))}
               </List>
             </ListContainer>
-            <ListContainer>
+            <ListContainer onDragOver={handleDragOver} onDrop={handleDrop} className="active">
               <Title>Selected Columns</Title>
               <List>
                 {activeFields.map(field => (
-                  <ItemContainer>
+                  <ItemContainer  key={field}>
                     <Item key={field}>{field}
                       <ListButton onClick={() => unselectField(field)}>
                         <CgClose style={{ color: "white" }} />
